@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="page-header">
+    <h1><%- link_to('Projects', '/projects') %></h1>
+    <p class="lead"><%= data.config.app %></p>
+  </div>
+  
+  <div class="row">
+    <div class="span12">
+      <a href="/projects/<%= params.id %>/update_code" class="btn">Update Code</a>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="span12">
+      <table class="repositories table table-striped table-bordered table-condensed table-hover">
+        <tbody>
+        <% _(data.config).each(function(v, k) { %>
+          <tr>
+            <td><%= _.str.humanize(k) %></td>
+            <td><pre><%= JSON.stringify(v, null, 2) %></pre></td>
+          </tr>
+        <% }) %>
+          <tr>
+            <td>Versions</td>
+            <td>
+              <ul>
+              <% data.versions.forEach(function(version) { %>
+                <li><%- link_to(version, '/projects/' + params.id + '/versions/' + version.replace(/\./g, '%2E')) %></li>
+              <% }) %>
+              </ul>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

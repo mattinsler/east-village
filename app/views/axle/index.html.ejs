@@ -1,0 +1,10 @@
+<table>
+  <tbody>
+  <% routes.forEach(function(route) { %>
+    <tr>
+      <td><%= route.host %></td>
+      <td><%= route.target.host  %>:<%= route.target.port %></td>
+    </tr>
+  <% }) %>
+  </tbody>
+</table>

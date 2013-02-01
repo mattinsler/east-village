@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="page-header">
+    <h1><%- link_to('Projects', '/projects') %></h1>
+    <p class="lead"><%= status.name %></p>
+  </div>
+  
+  <div class="row">
+    <div class="span12">
+      <a href="/projects/<%= params.projects_id %>/versions/<%= params.versions_id %>/install_dependencies" class="btn">Install Dependencies</a>
+      <a href="/projects/<%= params.projects_id %>/versions/<%= params.versions_id %>/start" class="btn">Start</a>
+      <a href="/projects/<%= params.projects_id %>/versions/<%= params.versions_id %>/stop" class="btn">Stop</a>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="span12">
+      <pre><%= JSON.stringify(status, null, 2) %></pre>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="span12">
+      <pre id="logs" class="console-output inverted"></pre>
+    </div>
+  </div>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    TERMINAL_COLORS = {
+      30: 'black',
+      31: 'red',
+      32: 'green',
+      33: 'yellow',
+      34: 'blue',
+      35: 'magenta',
+      36: 'cyan',
+      37: 'white',
+
+      39: 'black'
+    };
+    
+    function terminal_to_html(text) {
+      text = '<span class="black">' + text + '</span>';
+      
+      _(TERMINAL_COLORS).each(function(v, k) {
+        text = text.replace(new RegExp("\u001b\\[#{k}m", 'g'), '</span><span class="' + v + '">');
+      });
+      
+      return text;
+    }
+    
+    var socket = io.connect();
+    console.log('Connecting');
+    socket.on('connect', function() {
+      console.log('Connected');
+    });
+    socket.on('logs', function(data) {
+      $('#logs').append(terminal_to_html(data));
+    });
+  </script>
+</div>

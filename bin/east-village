@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+var start_daemon = require('../lib/start_daemon');
+start_daemon('axle caboose server', {cwd: __dirname + '/../', uid: 'east-village', spawnWith: {east_village_name: 'east-village'}});

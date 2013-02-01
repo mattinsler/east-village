@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Projects</h1>
+    <p class="lead">Check them out!</p>
+  </div>
+  
+  <%- link_to('New Project from a Github Repo', '/projects/new') %>
+  
+  <div class="row">
+    <div class="span12">
+      <table class="repositories table table-striped table-bordered table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Repo</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% projects.forEach(function(project) { %>
+          <tr>
+            <td><%- link_to(project.app, '/projects/' + project.app) %></td>
+            <td><%= project.source_opts.repo %></td>
+          </tr>
+        <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<style>
+body {margin:0;}
+
+.black {color:rgb(0, 0, 0)}
+.red {color:rgb(187, 0, 0)}
+.green {color:rgb(0, 187, 0)}
+.yellow {color:rgb(187, 187, 0)}
+.blue {color:rgb(0, 0, 187)}
+.magenta {color:rgb(187, 0, 187)}
+.cyan {color:rgb(0, 187, 187);}
+.white {color:rgb(187, 187, 187)}
+
+pre {
+  padding:20px;
+  font-family:Monaco,Consolas,"Lucida Console",monospace;
+  font-size:12px;
+  background:rgb(255, 255, 255);
+}
+
+pre.inverted {background:rgb(0, 0, 0);}
+pre.inverted .black {color:rgb(187, 187, 187)}
+pre.inverted .white {color:rgb(0, 0, 0)}
+</style>
+
+<pre class="inverted"><%- terminal_to_html(logs) %></pre>
+
+<script>
+  setTimeout(function() {
+    window.location.reload(true);
+  }, 10000);
+</script>

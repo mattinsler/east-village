@@ -1,0 +1,5 @@
+<td><%= model.get('private') ? 'Private' : 'Public' %></td>
+<td><a href="<%- model.get('html_url') %>" target="_blank"><%= model.get('full_name') %></a></td>
+<td><%= model.get('description') %></td>
+<td><%= model.get('watchers_count') %></td>
+<td><%= moment(model.get('pushed_at')).fromNow() %></td>

@@ -1,0 +1,50 @@
+<%- partial('/shared/top_bar', {active: 'Services'}) %>
+
+<div class="row">
+  <div class="twelve columns">
+    <h2>Services</h2>
+    <p>Where everybody knows your name</p>
+    <hr />
+  </div>
+</div>
+
+<div class="row">
+  <h3>Running</h3>
+  <div class="twelve columns">
+    <%- partial('service-list', {services: services.running}) %>
+  </div>
+</div>
+
+<div class="row">
+  <h3>Not Running</h3>
+  <div class="twelve columns">
+    <%- partial('service-list', {services: services.not_running}) %>
+  </div>
+</div>
+
+<script>
+$(function() {
+  $('a[data-async="async"]').each(function() {
+    var href = $(this).attr('href');
+    
+    $(this).on('click', function(e) {
+      var $el = $(this);
+      if (!$el.data('loading')) {
+        $el.addClass('disabled').data('loading', true);
+        
+        $.getJSON(href, function(data) {
+          console.log(data);
+          $el.removeClass('disabled').data('loading', false);
+        });
+      }
+      e.preventDefault();
+      return false;
+    });
+  });
+  
+  $('ul.accordion .content').on('click', function(e) {
+    e.preventDefault();
+    return false;
+  });
+});
+</script>

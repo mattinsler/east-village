@@ -1,0 +1,37 @@
+<pre class="console-output inverted"></pre>
+
+<script>
+function show_logs(text) {
+  var TERMINAL_COLORS = {
+    30: 'black',
+    31: 'red',
+    32: 'green',
+    33: 'yellow',
+    34: 'blue',
+    35: 'magenta',
+    36: 'cyan',
+    37: 'white',
+
+    39: 'black'
+  };
+  
+  text = '<span class="black">' + text + '</span>';
+  _(TERMINAL_COLORS).each(function(v, k) {
+    text = text.replace(new RegExp('\u001b\\[' + k + 'm', 'g'), '</span><span class="' + v + '">');
+  });
+  
+  $('pre.console-output').html(text);
+}
+
+function fetch_logs(callback) {
+  $.getJSON('/api/services/<%= service_id %>/logs', function(data) {
+    callback(data.logs);
+  });
+}
+
+setInterval(function() {
+  fetch_logs(show_logs);
+}, 10000);
+
+fetch_logs(show_logs);
+</script>

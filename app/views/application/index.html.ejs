@@ -1,0 +1,43 @@
+<%- partial('/shared/top_bar') %>
+
+<div id="content"></div>
+
+<script type="text/javascript">
+window.__bootstrap__ = <%- JSON.stringify({current_user: current_user}) %>;
+</script>
+
+<div id="templates">
+<% Caboose.path.public.join('javascripts', 'templates').readdir_sync().forEach(function(file) { %>
+  <script data-name="<%- file.basename %>" type="text/template"><%- file.read_file_sync() %></script>
+<% }) %>
+</div>
+
+<%-
+  javascript_include(
+    'lib/backbone.min',
+    'lib/ejs.min',
+    'lib/spellbinder.min',
+    'lib/collection_view',
+    'main'
+  )
+%>
+<%-
+  javascript_include.apply(null,
+    Caboose.path.public.join('javascripts', 'models').readdir_sync().map(function(file) { return 'models/' + file.basename; })
+  )
+%>
+<%-
+  javascript_include.apply(null,
+    Caboose.path.public.join('javascripts', 'collections').readdir_sync().map(function(file) { return 'collections/' + file.basename; })
+  )
+%>
+<%-
+  javascript_include.apply(null,
+    Caboose.path.public.join('javascripts', 'views').readdir_sync().map(function(file) { return 'views/' + file.basename; })
+  )
+%>
+<%-
+  javascript_include.apply(null,
+    Caboose.path.public.join('javascripts', 'routers').readdir_sync().map(function(file) { return 'routers/' + file.basename; })
+  )
+%>

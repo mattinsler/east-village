@@ -1,0 +1,67 @@
+<div class="accordion" id="accordion-<%= model.id %>">
+  <div class="accordion-group">
+    <div class="accordion-heading clearfix">
+      <div class="accordion-toggle left" data-toggle="collapse" data-parent="#accordion-<%= model.id %>" href="#collapse-<%= model.id %>">
+        <%= model.get('name') %>
+      </div>
+      <span class="right" style="display:block;padding:8px 15px;">
+        <a data-bind="[class:hide] running -> !running" href="/services/<%- model.id %>/logs">Logs</a>
+        <a data-bind="[class:hide] running" data-async="async" href="/api/services/<%- model.name %>/start">Start</a>
+      </span>
+    </div>
+    
+    <div id="collapse-<%= model.id %>" class="accordion-body collapse">
+      <div class="accordion-inner">
+        
+        
+        <table class="table table-striped table-bordered table-condensed table-hover table-definitions">
+          <tbody>
+            <tr data-bind="[class:hide] running -> !value"><td>PID</td><td data-bind="pid"></td></tr>
+            <tr><td>Command</td><td data-bind="full_command"></td></tr>
+            <tr data-bind="[class:hide] running -> !value">
+              <td>Started</td>
+              <td>
+                <span data-bind="ctime -> moment(ctime).format('MM/DD/YYYY hh:mm:ss a')"></span>
+                (running for <span data-bind="ctime -> moment(ctime).fromNow(true)"></span>)
+              </td>
+            </tr>
+
+            <tr>
+              <td>Environment</td>
+              <td>
+                <a class="show-hide" href="#env-<%= model.id %>"></a>
+                <table id="env-<%= model.id %>" class="twelve table-definitions">
+                  <tbody>
+                    <% _((model.get('spawnWith') || model.get('options')).env).each(function(v, k) { %>
+                      <tr>
+                        <td><%= k %></td><td><%= v %></td>
+                      </tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="row">
+          <div class="twelve columns">
+            <div class="left">
+              <a data-bind="[class:hide] running -> !value" href="#logs-<%= model.id %>" class="show-hide" data-text="logs"></a>
+            </div>
+            <div class="right">
+              <ul class="button-group radius">
+                <li><a data-bind="[class:hide] running -> !value" class="button radius tiny" data-async="async" href="/api/services/<%- model.id %>/stop">Stop</a></li>
+                <li><a data-bind="[class:hide] running" class="button radius tiny" data-async="async" href="/api/services/<%- model.get('name') %>/start">Start</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <pre data-bind="[class:hide] running -> !value" id="logs-<%= model.id %>" class="console-output inverted"><%- model.get('logs') %></pre>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>

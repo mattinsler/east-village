@@ -1,0 +1,16 @@
+<table>
+  <tbody>
+  <% drones.forEach(function(drone) { %>
+    <tr>
+      <td><%= drone.pid %></td>
+      <td><%= drone.uid  %></td>
+      <td><%= drone.name %></td>
+      <td><%= drone.full_command %></td>
+      <td><a href="/drones/<%- drone.id %>/stop">Stop</a></td>
+      <td><a href="/drones/<%- drone.id %>/restart">Restart</a></td>
+      <td><a href="/drones/<%- drone.id %>/logs">Logs</a></td>
+      <td></td>
+    </tr>
+  <% }) %>
+  </tbody>
+</table>

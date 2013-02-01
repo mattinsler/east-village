@@ -1,0 +1,26 @@
+{
+  "name": "east-village",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "ejs": "0.8.3",
+    "coupler": "latest",
+    "async": "latest",
+    "forever": "latest",
+    "moment": "latest",
+    "underscore": "latest",
+    "walkabout": "latest",
+    "passport": "latest",
+    "passport-github": "latest",
+    "caboose-model": "0.1.18",
+    "connect-redis": "latest",
+    "connect-compiler": "latest",
+    "redback": "latest"
+  },
+  "caboose-plugins": [
+    "caboose-model"
+  ],
+  "axle_domains": [
+    "east-village.localhost.dev"
+  ]
+}

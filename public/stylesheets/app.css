@@ -1,0 +1,54 @@
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+
+body {margin-top:40px;}
+
+.left {float:left;}
+.right {float:right;}
+
+.text-left {text-align:left;}
+.text-right {text-align:right;}
+.text-center {text-align:center;}
+
+.table-definitions tbody tr td:first-child {width:25%;font-weight:bold;}
+
+pre.console-output {padding:20px;font-family:Monaco,Consolas,"Lucida Console",monospace;font-size:12px;background:rgb(255, 255, 255);overflow:scroll;}
+pre.console-output.inverted {background:rgb(0, 0, 0);}
+
+pre.console-output .black {color:rgb(0, 0, 0)}
+pre.console-output .red {color:rgb(187, 0, 0)}
+pre.console-output .green {color:rgb(0, 187, 0)}
+pre.console-output .yellow {color:rgb(187, 187, 0)}
+pre.console-output .blue {color:rgb(0, 0, 187)}
+pre.console-output .magenta {color:rgb(187, 0, 187)}
+pre.console-output .cyan {color:rgb(0, 187, 187);}
+pre.console-output .white {color:rgb(187, 187, 187)}
+
+pre.console-output.inverted .black {color:rgb(187, 187, 187)}
+pre.console-output.inverted .white {color:rgb(0, 0, 0)}
+
+
+/* -----------------------------------------
+   Page Name 1
+----------------------------------------- */
+
+
+
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */
+
+

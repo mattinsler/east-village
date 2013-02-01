@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>East Village</title>
+    <!-- Bootstrap -->
+    <%- stylesheet_include('bootstrap.min', 'font-awesome.min', 'app') %>
+    
+    <%-
+      javascript_include(
+        'lib/jquery.min',
+        'lib/lodash.min',
+        'lib/moment.min',
+        'lib/bootstrap.min'
+      )
+    %>
+  </head>
+  <body>
+    <%- partial('/shared/top_bar') %>
+    
+    <%- yield() %>
+  </body>
+</html>
